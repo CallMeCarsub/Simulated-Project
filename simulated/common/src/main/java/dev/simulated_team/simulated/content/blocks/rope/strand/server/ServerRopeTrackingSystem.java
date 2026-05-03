@@ -71,7 +71,7 @@ public class ServerRopeTrackingSystem implements SubLevelTrackingPlugin {
                 final BlockPos block = attachment.blockAttachment();
                 final RopeStrandHolderBehavior holder = RopeStrandHolderBehavior.get(this.level.getBlockEntity(block), RopeStrandHolderBehavior.TYPE);
 
-                if (holder == null) {
+                if (holder == null || holder.getOwnedStrand() == null || !holder.getOwnedStrand().isActive()) {
                     continue;
                 }
 

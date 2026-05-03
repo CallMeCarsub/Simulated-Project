@@ -164,8 +164,15 @@ public class RopeStrandHolderBehavior extends BlockEntityBehaviour {
         final SubLevelTrackingSystem trackingSystem = container.trackingSystem();
 
         //todo can be null from schematics
-        final RopeAttachment startAttachment = this.ownedServerStrand.getAttachment(RopeAttachmentPoint.START);
-        final RopeAttachment endAttachment = this.ownedServerStrand.getAttachment(RopeAttachmentPoint.END);
+        final RopeAttachment startAttachment;
+        final RopeAttachment endAttachment;
+        if(this.ownedServerStrand != null){
+            startAttachment = this.ownedServerStrand.getAttachment(RopeAttachmentPoint.START);
+            endAttachment = this.ownedServerStrand.getAttachment(RopeAttachmentPoint.END);
+        }else{
+            startAttachment = null;
+            endAttachment = null;
+        }
 
         return new ClientboundRopeDataPacket(
                 trackingSystem.getInterpolationTick(),
